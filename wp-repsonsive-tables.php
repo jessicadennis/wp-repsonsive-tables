@@ -34,7 +34,7 @@ $resp_table_css = ''; //we will return the computed css and add it to wp_head
 /* Let's do the stuff */
 
 /* first, let's get all our th's into an array */
-function responsive_table_handler() {
+function responsive_table_handler($atts,  $content = null) {
 
     /* Include Simple DOM Parster */
     require_once(plugin_dir_path( __FILE__ ) . 'simple_html_dom.php');
@@ -58,7 +58,7 @@ function responsive_table_handler() {
     }
 }
 
-add_shortcode ( 'respsonve-table',  'responsive_table_handler');
+add_shortcode ( 'responsive-table',  'responsive_table_handler');
 
 function resp_table_css() {
     echo '<link rel="stylesheet" type="text/css" href="' . plugins_url( 'wp-responsive-tables.css' , __FILE__ ) . '" />';

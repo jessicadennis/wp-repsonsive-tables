@@ -31,17 +31,17 @@ function wprt_filter_the_content($content) {
 /* Variables */
 $resp_table_css = ''; //we will return the computed css and add it to wp_head
 
-/* Let's do the stuff */
 
-/* first, let's get all our th's into an array */
 function responsive_table_handler($atts,  $content = null) {
 
     /* Include Simple DOM Parster */
     require_once(plugin_dir_path( __FILE__ ) . 'simple_html_dom.php');
-
+	
     /* Use Simple HTML DOM to process our content and pull the th tags */
     $html = str_get_html($content);
     $th = $html->find('th');
+	
+	echo '<pre>' . var_dump($th) . '</pre>';
 
     /* now let's set a randomish ID on the particular table we're working on */
     $table = $html->find('table');
@@ -53,9 +53,9 @@ function responsive_table_handler($atts,  $content = null) {
     for ($i = 1, $size = count($th); $i <= $size; $i++) {
         $resp_table_css .= '#' . $tid . '.responsive-table td:nth-of-type(' . $i . '):before { content: "' . $th[$i]->innertext . '"; }';
     /* echo the generated css inline because meh, why not */
-
-    echo '<style type="text/css">' . $resp_table_css . '</style>';
     }
+	echo '<style type="text/css">' . $resp_table_css . '</style>';
+	echo $content;
 }
 
 add_shortcode ( 'responsive-table',  'responsive_table_handler');

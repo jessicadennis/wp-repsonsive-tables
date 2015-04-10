@@ -1,23 +1,23 @@
-/* CSS for responsive tables */
+/* CSS for wp-responsive tables */
 
 @media only screen and (max-width: 760px),(min-device-width: 768px) and (max-device-width: 1024px) {
 /* Force table to not be like tables anymore */
-table.responsive-table, .responsive-table thead, .responsive-table tbody, .responsive-table th, .responsive-table td, .responsive-table tr {
+table.wp-responsive-table, .wp-responsive-table thead, .wp-responsive-table tbody, .wp-responsive-table th, .wp-responsive-table td, .wp-responsive-table tr {
 display: block;
 }
 
 /* Hide table headers (but not positioned way to the left off-screen for accessibility: a better option than display:none;) */
-.responsive-table thead tr {
+.wp-responsive-table thead tr {
 position: absolute;
 top: -9999px;
 left: -9999px;
 }
 
-.responsive-table tr {
+.wp-responsive-table tr {
 border: 1px solid #ccc;
 }
 
-#content .responsive-table td {
+#content .wp-responsive-table td {
 /* Behave like a "row" */
 border: none;
 border-bottom: 1px solid #eee;
@@ -25,7 +25,7 @@ position: relative;
 padding-left: 50%;
 }
 
-.responsive-table td:before {
+.wp-responsive-table td:before {
 /* Now like a table header */
 position: absolute;
 /* Top/left values mimic padding */
@@ -34,4 +34,5 @@ left: 6px;
 width: 45%;
 padding-right: 10px;
 white-space: nowrap;
+}
 }

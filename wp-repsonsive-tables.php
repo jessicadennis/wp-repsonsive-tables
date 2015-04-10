@@ -36,25 +36,23 @@ function responsive_table_handler($atts,  $content = null) {
 
     /* Include Simple DOM Parster */
     require_once(plugin_dir_path( __FILE__ ) . 'simple_html_dom.php');
-	
+
     /* Use Simple HTML DOM to process our content and pull the th tags */
     $html = str_get_html($content);
     $th = $html->find('th');
-	
-	echo '<pre>' . var_dump($th) . '</pre>';
 
     /* now let's set a randomish ID on the particular table we're working on */
-    $table = $html->find('table');
     $tid = rand(1024,9999);
-    $table->id = $tid;
-    $table->class='responsive-table';
+    $content = preg_replace("/<table.*?>/", "<table id=\"tid-$tid\" class=\"wp-responsive-table\">", $content);
 
     /* now let's generate our CSS */
-    for ($i = 1, $size = count($th); $i <= $size; $i++) {
-        $resp_table_css .= '#' . $tid . '.responsive-table td:nth-of-type(' . $i . '):before { content: "' . $th[$i]->innertext . '"; }';
-    /* echo the generated css inline because meh, why not */
+    for ($i = 0, $size = count($th); $i < $size; $i++) {
+        //arrays are 0-indexed but our child elements are 1-indexed, whee
+        $nth = $i + 1;
+        $resp_table_css .= '#tid-' . $tid . '.wp-responsive-table td:nth-of-type(' . $nth . '):before { content: "' . $th[$i]->innertext . '"; } ';
     }
-	echo '<style type="text/css">' . $resp_table_css . '</style>';
+    /* echo the generated css inline because meh, why not */
+	echo '<style type="text/css" id="style-' . $tid . '">@media only screen and (max-width: 760px),(min-device-width: 768px) and (max-device-width: 1024px) {' . $resp_table_css . '}</style>';
 	echo $content;
 }
 

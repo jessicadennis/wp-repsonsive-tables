@@ -8,7 +8,7 @@ Plugin Name: WP Responsive Tables
 Description: Implements <a href="https://css-tricks.com/responsive-data-tables/" target="_blank">Chris Coyier's responsive data tables</a> with a convenient Wordpress shortcode.
 Author: Jessica Dennis
 Version: 0.1
-Author URL: http://jessicadennis.me
+Author URI: http://jessicadennis.me
 */
 
 /* Support Functions */
